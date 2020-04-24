@@ -4,7 +4,7 @@
 # complexity = medium
 # disruption = low
 
-{{% if product in ["rhel7", "ol7"] %}}
+{{% if product in ["rhel7", "rhel8", "ol7", "ol8"] %}}
 - name: check {{{ ARG_NAME }}} argument exists
   command: grep 'GRUB_CMDLINE_LINUX.*{{{ ARG_NAME }}}=' /etc/default/grub
   failed_when: False
@@ -13,7 +13,7 @@
 - name: replace existing {{{ ARG_NAME }}} argument
   replace:
       path: /etc/default/grub
-      regexp: '{{{ ARG_NAME }}}=.'
+      regexp: '{{{ ARG_NAME }}}=\S*'
       replace: '{{{ ARG_NAME_VALUE }}}'
   when: argcheck.rc == 0
 
