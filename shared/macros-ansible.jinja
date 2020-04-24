@@ -18,7 +18,7 @@
     regexp: '{{{ regex }}}'
     {{%- endif %}}
     {{%- if state == 'present' %}}
-    line: '{{{ new_line }}}'
+    line: "'{{{ new_line }}}'"
     state: present
     {{%- if insert_after %}}
     insertafter: '{{{ insert_after }}}'
